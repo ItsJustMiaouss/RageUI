@@ -18,24 +18,23 @@ function RageUI.PoolMenus:Example()
 	MainMenu:IsVisible(function(Items)
 		Items:Heritage(1, 2)
 		Items:AddButton("Sub Menu", "Sub Menu", { IsDisabled = false }, function(onSelected)
-	
+
 		end, SubMenu)
 		Items:AddButton("Hello world", "Hello world.", { IsDisabled = false }, function(onSelected)
 
 		end)
-		Items:AddList("List", { 1, 2, 3 }, ListIndex, nil, { IsDisabled = false }, function(Index, onSelected, onListChange)
-			if (onListChange) then
-				ListIndex = Index
-			end
-		end)
+		Items:AddList("List", { 1, 2, 3 }, ListIndex, nil, { IsDisabled = false },
+			function(Index, onSelected, onListChange)
+				if (onListChange) then
+					ListIndex = Index
+				end
+			end)
 		Items:AddSeparator("Separator")
-		Items:CheckBox("Hello", "Descriptions", Checked, { Style = 1 }, function(onSelected, IsChecked)
+		Items:AddCheckBox("Hello", "Descriptions", Checked, { Style = 1 }, function(onSelected, IsChecked)
 			if (onSelected) then
 				Checked = IsChecked
 			end
 		end)
-
-
 	end, function(Panels)
 		Panels:Grid(GridX, GridY, "Top", "Bottom", "Left", "Right", function(X, Y, CharacterX, CharacterY)
 			GridX = X
