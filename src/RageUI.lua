@@ -134,8 +134,8 @@ RageUI.Settings = {
         },
         Enabled = {
             Controller = {
-                { 0, 2 }, -- Look Up and Down
-                { 0, 1 }, -- Look Left and Right
+                { 0, 2 },  -- Look Up and Down
+                { 0, 1 },  -- Look Left and Right
                 { 0, 25 }, -- Aim
                 { 0, 24 }, -- Attack
             },
@@ -153,20 +153,20 @@ RageUI.Settings = {
                 { 0, 241 }, -- Scroll up
                 { 0, 239 }, -- Cursor X
                 { 0, 240 }, -- Cursor Y
-                { 0, 31 }, -- Move Up and Down
-                { 0, 30 }, -- Move Left and Right
-                { 0, 21 }, -- Sprint
-                { 0, 22 }, -- Jump
-                { 0, 23 }, -- Enter
-                { 0, 75 }, -- Exit Vehicle
-                { 0, 71 }, -- Accelerate Vehicle
-                { 0, 72 }, -- Vehicle Brake
-                { 0, 59 }, -- Move Vehicle Left and Right
-                { 0, 89 }, -- Fly Yaw Left
-                { 0, 9 }, -- Fly Left and Right
-                { 0, 8 }, -- Fly Up and Down
-                { 0, 90 }, -- Fly Yaw Right
-                { 0, 76 }, -- Vehicle Handbrake
+                { 0, 31 },  -- Move Up and Down
+                { 0, 30 },  -- Move Left and Right
+                { 0, 21 },  -- Sprint
+                { 0, 22 },  -- Jump
+                { 0, 23 },  -- Enter
+                { 0, 75 },  -- Exit Vehicle
+                { 0, 71 },  -- Accelerate Vehicle
+                { 0, 72 },  -- Vehicle Brake
+                { 0, 59 },  -- Move Vehicle Left and Right
+                { 0, 89 },  -- Fly Yaw Left
+                { 0, 9 },   -- Fly Left and Right
+                { 0, 8 },   -- Fly Up and Down
+                { 0, 90 },  -- Fly Yaw Right
+                { 0, 76 },  -- Vehicle Handbrake
             },
         },
     },
@@ -307,17 +307,31 @@ function RageUI.Banner()
         if CurrentMenu.Sprite ~= nil then
             if CurrentMenu.Sprite.Dictionary ~= nil then
                 if CurrentMenu.Sprite.Dictionary == "commonmenu" then
-                    Graphics.Sprite(CurrentMenu.Sprite.Dictionary, CurrentMenu.Sprite.Texture, CurrentMenu.X, CurrentMenu.Y, RageUI.Settings.Items.Title.Background.Width + CurrentMenu.WidthOffset, RageUI.Settings.Items.Title.Background.Height, CurrentMenu.Sprite.Color.R, CurrentMenu.Sprite.Color.G, CurrentMenu.Sprite.Color.B, CurrentMenu.Sprite.Color.A)
+                    Graphics.Sprite(CurrentMenu.Sprite.Dictionary, CurrentMenu.Sprite.Texture, CurrentMenu.X,
+                        CurrentMenu.Y, RageUI.Settings.Items.Title.Background.Width + CurrentMenu.WidthOffset,
+                        RageUI.Settings.Items.Title.Background.Height, CurrentMenu.Sprite.Color.R,
+                        CurrentMenu.Sprite.Color.G, CurrentMenu.Sprite.Color.B, CurrentMenu.Sprite.Color.A)
                 else
-                    Graphics.Sprite(CurrentMenu.Sprite.Dictionary, CurrentMenu.Sprite.Texture, CurrentMenu.X, CurrentMenu.Y, RageUI.Settings.Items.Title.Background.Width + CurrentMenu.WidthOffset, RageUI.Settings.Items.Title.Background.Height, nil)
+                    Graphics.Sprite(CurrentMenu.Sprite.Dictionary, CurrentMenu.Sprite.Texture, CurrentMenu.X,
+                        CurrentMenu.Y, RageUI.Settings.Items.Title.Background.Width + CurrentMenu.WidthOffset,
+                        RageUI.Settings.Items.Title.Background.Height, nil)
                 end
             else
-                Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y, RageUI.Settings.Items.Title.Background.Width + CurrentMenu.WidthOffset, RageUI.Settings.Items.Title.Background.Height, CurrentMenu.Rectangle.R, CurrentMenu.Rectangle.G, CurrentMenu.Rectangle.B, CurrentMenu.Rectangle.A)
+                Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y,
+                    RageUI.Settings.Items.Title.Background.Width + CurrentMenu.WidthOffset,
+                    RageUI.Settings.Items.Title.Background.Height, CurrentMenu.Rectangle.R, CurrentMenu.Rectangle.G,
+                    CurrentMenu.Rectangle.B, CurrentMenu.Rectangle.A)
             end
         else
-            Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y, RageUI.Settings.Items.Title.Background.Width + CurrentMenu.WidthOffset, RageUI.Settings.Items.Title.Background.Height, CurrentMenu.Rectangle.R, CurrentMenu.Rectangle.G, CurrentMenu.Rectangle.B, CurrentMenu.Rectangle.A)
+            Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y,
+                RageUI.Settings.Items.Title.Background.Width + CurrentMenu.WidthOffset,
+                RageUI.Settings.Items.Title.Background.Height, CurrentMenu.Rectangle.R, CurrentMenu.Rectangle.G,
+                CurrentMenu.Rectangle.B, CurrentMenu.Rectangle.A)
         end
-        Graphics.Text(CurrentMenu.Title, CurrentMenu.X + RageUI.Settings.Items.Title.Text.X + (CurrentMenu.WidthOffset / 2), CurrentMenu.Y + RageUI.Settings.Items.Title.Text.Y, CurrentMenu.TitleFont, CurrentMenu.TitleScale, 255, 255, 255, 255, 1)
+        Graphics.Text(CurrentMenu.Title,
+            CurrentMenu.X + RageUI.Settings.Items.Title.Text.X + (CurrentMenu.WidthOffset / 2),
+            CurrentMenu.Y + RageUI.Settings.Items.Title.Text.Y, CurrentMenu.TitleFont, CurrentMenu.TitleScale, 255, 255,
+            255, 255, 1)
         RageUI.ItemOffset = RageUI.ItemOffset + RageUI.Settings.Items.Title.Background.Height
     end
 end
@@ -327,8 +341,14 @@ function RageUI.Subtitle()
     if (CurrentMenu.Display.Subtitle) then
         RageUI.ItemsSafeZone(CurrentMenu)
         if CurrentMenu.Subtitle ~= "" then
-            Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + RageUI.ItemOffset, RageUI.Settings.Items.Subtitle.Background.Width + CurrentMenu.WidthOffset, RageUI.Settings.Items.Subtitle.Background.Height + CurrentMenu.SubtitleHeight, 0, 0, 0, 255)
-            Graphics.Text(CurrentMenu.PageCounterColour .. CurrentMenu.Subtitle, CurrentMenu.X + RageUI.Settings.Items.Subtitle.Text.X, CurrentMenu.Y + RageUI.Settings.Items.Subtitle.Text.Y + RageUI.ItemOffset, 0, RageUI.Settings.Items.Subtitle.Text.Scale, 245, 245, 245, 255, nil, false, false, RageUI.Settings.Items.Subtitle.Background.Width + CurrentMenu.WidthOffset)
+            Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + RageUI.ItemOffset,
+                RageUI.Settings.Items.Subtitle.Background.Width + CurrentMenu.WidthOffset,
+                RageUI.Settings.Items.Subtitle.Background.Height + CurrentMenu.SubtitleHeight, 0, 0, 0, 255)
+            Graphics.Text(CurrentMenu.PageCounterColour .. CurrentMenu.Subtitle,
+                CurrentMenu.X + RageUI.Settings.Items.Subtitle.Text.X,
+                CurrentMenu.Y + RageUI.Settings.Items.Subtitle.Text.Y + RageUI.ItemOffset, 0,
+                RageUI.Settings.Items.Subtitle.Text.Scale, 245, 245, 245, 255, nil, false, false,
+                RageUI.Settings.Items.Subtitle.Background.Width + CurrentMenu.WidthOffset)
             if CurrentMenu.Index > CurrentMenu.Options or CurrentMenu.Index < 0 then
                 CurrentMenu.Index = 1
             end
@@ -345,9 +365,15 @@ function RageUI.Subtitle()
 
             if CurrentMenu.Display.PageCounter then
                 if CurrentMenu.PageCounter == nil then
-                    Graphics.Text(CurrentMenu.PageCounterColour .. CurrentMenu.Index .. " / " .. CurrentMenu.Options, CurrentMenu.X + RageUI.Settings.Items.Subtitle.PreText.X + CurrentMenu.WidthOffset, CurrentMenu.Y + RageUI.Settings.Items.Subtitle.PreText.Y + RageUI.ItemOffset, 0, RageUI.Settings.Items.Subtitle.PreText.Scale, 245, 245, 245, 255, 2)
+                    Graphics.Text(CurrentMenu.PageCounterColour .. CurrentMenu.Index .. " / " .. CurrentMenu.Options,
+                        CurrentMenu.X + RageUI.Settings.Items.Subtitle.PreText.X + CurrentMenu.WidthOffset,
+                        CurrentMenu.Y + RageUI.Settings.Items.Subtitle.PreText.Y + RageUI.ItemOffset, 0,
+                        RageUI.Settings.Items.Subtitle.PreText.Scale, 245, 245, 245, 255, 2)
                 else
-                    Graphics.Text(CurrentMenu.PageCounter, CurrentMenu.X + RageUI.Settings.Items.Subtitle.PreText.X + CurrentMenu.WidthOffset, CurrentMenu.Y + RageUI.Settings.Items.Subtitle.PreText.Y + RageUI.ItemOffset, 0, RageUI.Settings.Items.Subtitle.PreText.Scale, 245, 245, 245, 255, 2)
+                    Graphics.Text(CurrentMenu.PageCounter,
+                        CurrentMenu.X + RageUI.Settings.Items.Subtitle.PreText.X + CurrentMenu.WidthOffset,
+                        CurrentMenu.Y + RageUI.Settings.Items.Subtitle.PreText.Y + RageUI.ItemOffset, 0,
+                        RageUI.Settings.Items.Subtitle.PreText.Scale, 245, 245, 245, 255, 2)
                 end
             end
             RageUI.ItemOffset = RageUI.ItemOffset + RageUI.Settings.Items.Subtitle.Background.Height
@@ -360,7 +386,9 @@ function RageUI.Background()
     if (CurrentMenu.Display.Background) then
         RageUI.ItemsSafeZone(CurrentMenu)
         SetScriptGfxDrawOrder(0)
-        Graphics.Sprite(RageUI.Settings.Items.Background.Dictionary, RageUI.Settings.Items.Background.Texture, CurrentMenu.X, CurrentMenu.Y + RageUI.Settings.Items.Background.Y + CurrentMenu.SubtitleHeight, RageUI.Settings.Items.Background.Width + CurrentMenu.WidthOffset, RageUI.ItemOffset, 0, 0, 0, 0, 255)
+        Graphics.Sprite(RageUI.Settings.Items.Background.Dictionary, RageUI.Settings.Items.Background.Texture,
+            CurrentMenu.X, CurrentMenu.Y + RageUI.Settings.Items.Background.Y + CurrentMenu.SubtitleHeight,
+            RageUI.Settings.Items.Background.Width + CurrentMenu.WidthOffset, RageUI.ItemOffset, 0, 0, 0, 0, 255)
         SetScriptGfxDrawOrder(1)
     end
 end
@@ -370,9 +398,16 @@ function RageUI.Description()
     local Description = RageUI.Settings.Items.Description
     if CurrentMenu.Description ~= nil then
         RageUI.ItemsSafeZone(CurrentMenu)
-        Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + Description.Bar.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, Description.Bar.Width + CurrentMenu.WidthOffset, Description.Bar.Height, 0, 0, 0, 255)
-        Graphics.Sprite(Description.Background.Dictionary, Description.Background.Texture, CurrentMenu.X, CurrentMenu.Y + Description.Background.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, Description.Background.Width + CurrentMenu.WidthOffset, CurrentMenu.DescriptionHeight, 0, 0, 0, 255)
-        Graphics.Text(CurrentMenu.Description, CurrentMenu.X + Description.Text.X, CurrentMenu.Y + Description.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, Description.Text.Scale, 255, 255, 255, 255, nil, false, false, Description.Background.Width + CurrentMenu.WidthOffset - 8.0)
+        Graphics.Rectangle(CurrentMenu.X,
+            CurrentMenu.Y + Description.Bar.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
+            Description.Bar.Width + CurrentMenu.WidthOffset, Description.Bar.Height, 0, 0, 0, 255)
+        Graphics.Sprite(Description.Background.Dictionary, Description.Background.Texture, CurrentMenu.X,
+            CurrentMenu.Y + Description.Background.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
+            Description.Background.Width + CurrentMenu.WidthOffset, CurrentMenu.DescriptionHeight, 0, 0, 0, 255)
+        Graphics.Text(CurrentMenu.Description, CurrentMenu.X + Description.Text.X,
+            CurrentMenu.Y + Description.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0,
+            Description.Text.Scale, 255, 255, 255, 255, nil, false, false,
+            Description.Background.Width + CurrentMenu.WidthOffset - 8.0)
         RageUI.ItemOffset = RageUI.ItemOffset + CurrentMenu.DescriptionHeight + Description.Bar.Y
     end
 end
@@ -439,7 +474,11 @@ function RageUI.ItemsDescription(Description)
         if CurrentMenu.Description ~= Description then
             CurrentMenu.Description = Description or nil
             local SettingsDescription = RageUI.Settings.Items.Description
-            local DescriptionLineCount = Graphics.GetLineCount(CurrentMenu.Description, CurrentMenu.X + SettingsDescription.Text.X, CurrentMenu.Y + SettingsDescription.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, SettingsDescription.Text.Scale, 255, 255, 255, 255, nil, false, false, SettingsDescription.Background.Width + (CurrentMenu.WidthOffset - 5.0))
+            local DescriptionLineCount = Graphics.GetLineCount(CurrentMenu.Description,
+                CurrentMenu.X + SettingsDescription.Text.X,
+                CurrentMenu.Y + SettingsDescription.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0,
+                SettingsDescription.Text.Scale, 255, 255, 255, 255, nil, false, false,
+                SettingsDescription.Background.Width + (CurrentMenu.WidthOffset - 5.0))
             if DescriptionLineCount > 1 then
                 CurrentMenu.DescriptionHeight = SettingsDescription.Background.Height * DescriptionLineCount
             else
@@ -453,9 +492,13 @@ end
 
 function RageUI.ItemsMouseBounds(CurrentMenu, Selected, Option, SettingsButton)
     local Hovered = false
-    Hovered = Graphics.IsMouseInBounds(CurrentMenu.X + CurrentMenu.SafeZoneSize.X, CurrentMenu.Y + SettingsButton.Rectangle.Y + CurrentMenu.SafeZoneSize.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, SettingsButton.Rectangle.Width + CurrentMenu.WidthOffset, SettingsButton.Rectangle.Height)
+    Hovered = Graphics.IsMouseInBounds(CurrentMenu.X + CurrentMenu.SafeZoneSize.X,
+        CurrentMenu.Y + SettingsButton.Rectangle.Y + CurrentMenu.SafeZoneSize.Y + CurrentMenu.SubtitleHeight +
+        RageUI.ItemOffset, SettingsButton.Rectangle.Width + CurrentMenu.WidthOffset, SettingsButton.Rectangle.Height)
     if Hovered and not Selected then
-        Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + SettingsButton.Rectangle.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, SettingsButton.Rectangle.Width + CurrentMenu.WidthOffset, SettingsButton.Rectangle.Height, 255, 255, 255, 20)
+        Graphics.Rectangle(CurrentMenu.X,
+            CurrentMenu.Y + SettingsButton.Rectangle.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
+            SettingsButton.Rectangle.Width + CurrentMenu.WidthOffset, SettingsButton.Rectangle.Height, 255, 255, 255, 20)
         if CurrentMenu.Controls.Click.Active then
             CurrentMenu.Index = Option
 

@@ -90,7 +90,8 @@ function Graphics.Sprite(dictionary, name, x, y, width, height, heading, r, g, b
         RequestStreamedTextureDict(dictionary, true)
     end
 
-    DrawSprite(dictionary, name, X + Width * 0.5, Y + Height * 0.5, Width, Height, heading or 0, r or 255, g or 255, b or 255, a or 255)
+    DrawSprite(dictionary, name, X + Width * 0.5, Y + Height * 0.5, Width, Height, heading or 0, r or 255, g or 255,
+        b or 255, a or 255)
 end
 
 function Graphics.GetLineCount(text, x, y, font, scale, r, g, b, a, alignment, dropShadow, outline, wordWrap)
@@ -126,7 +127,8 @@ function Graphics.ScreenToWorld(distance, flags)
     local direction = camPos + forwardDir * distance
     local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(cam3DPos, direction, flags, 0, 0)
     local _, hit, endCoords, surfaceNormal, entityHit = GetShapeTestResult(rayHandle)
-    return (hit == 1 and true or false), endCoords, surfaceNormal, entityHit, (entityHit >= 1 and GetEntityType(entityHit) or 0), direction, mouse
+    return (hit == 1 and true or false), endCoords, surfaceNormal, entityHit,
+        (entityHit >= 1 and GetEntityType(entityHit) or 0), direction, mouse
 end
 
 function Graphics.ScreenRelToWorld(camPos, camRot, cursor)

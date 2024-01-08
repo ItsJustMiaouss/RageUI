@@ -14,7 +14,7 @@ local function AddLongString(txt)
 end
 
 function Visual.Notification(args)
-    if (not args.dict) and (args.name )then
+    if (not args.dict) and (args.name) then
         args.dict = args.name
     end
     if not HasStreamedTextureDictLoaded(args.dict) then
@@ -32,7 +32,8 @@ function Visual.Notification(args)
         end
     end
     if (args.title) and (args.subtitle) and (args.name) then
-        EndTextCommandThefeedPostMessagetext(args.dict or "CHAR_DEFAULT", args.name or "CHAR_DEFAULT", true, args.icon or 0, args.title or "", args.subtitle or "")
+        EndTextCommandThefeedPostMessagetext(args.dict or "CHAR_DEFAULT", args.name or "CHAR_DEFAULT", true,
+            args.icon or 0, args.title or "", args.subtitle or "")
         SetStreamedTextureDictAsNoLongerNeeded(args.dict)
     end
     EndTextCommandThefeedPostTicker(false, true)

@@ -222,4 +222,3 @@ RageUI.ItemsColour = {
     Stunt1 = { 38, 136, 234, 255 },
     Stunt2 = { 224, 50, 50, 255 },
 }
-
