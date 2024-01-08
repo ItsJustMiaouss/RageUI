@@ -4,7 +4,7 @@
 --- created at [24/05/2021 10:02]
 ---
 
-RageUI = {};
+RageUI = {}
 
 ---@class RageUIMenus
 RageUIMenus = setmetatable({}, RageUIMenus)
@@ -29,7 +29,7 @@ RageUI.StatisticPanelCount = 0
 RageUI.PoolMenus = RageUI.PoolMenus or {
     Timer = 0,
     Name = nil,
-};
+}
 
 ---@class Settings
 RageUI.Settings = {
@@ -264,7 +264,7 @@ function RageUI.Visible(Menu, Value)
                         RageUI.CurrentMenu.Closed()
                     end
                     RageUI.CurrentMenu.Open = not Value
-                    Menu:UpdateInstructionalButtons(Value);
+                    Menu:UpdateInstructionalButtons(Value)
                 end
                 RageUI.CurrentMenu = Menu
             else
@@ -356,7 +356,7 @@ function RageUI.Subtitle()
 end
 
 function RageUI.Background()
-    local CurrentMenu = RageUI.CurrentMenu;
+    local CurrentMenu = RageUI.CurrentMenu
     if (CurrentMenu.Display.Background) then
         RageUI.ItemsSafeZone(CurrentMenu)
         SetScriptGfxDrawOrder(0)
@@ -366,8 +366,8 @@ function RageUI.Background()
 end
 
 function RageUI.Description()
-    local CurrentMenu = RageUI.CurrentMenu;
-    local Description = RageUI.Settings.Items.Description;
+    local CurrentMenu = RageUI.CurrentMenu
+    local Description = RageUI.Settings.Items.Description
     if CurrentMenu.Description ~= nil then
         RageUI.ItemsSafeZone(CurrentMenu)
         Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + Description.Bar.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, Description.Bar.Width + CurrentMenu.WidthOffset, Description.Bar.Height, 0, 0, 0, 255)
@@ -378,7 +378,7 @@ function RageUI.Description()
 end
 
 function RageUI.Render()
-    local CurrentMenu = RageUI.CurrentMenu;
+    local CurrentMenu = RageUI.CurrentMenu
     if CurrentMenu.Safezone then
         ResetScriptGfxAlign()
     end
@@ -434,11 +434,11 @@ function RageUI.Render()
 end
 
 function RageUI.ItemsDescription(Description)
-    local CurrentMenu = RageUI.CurrentMenu;
+    local CurrentMenu = RageUI.CurrentMenu
     if Description ~= "" or Description ~= nil then
         if CurrentMenu.Description ~= Description then
-            CurrentMenu.Description = Description or nil;
-            local SettingsDescription = RageUI.Settings.Items.Description;
+            CurrentMenu.Description = Description or nil
+            local SettingsDescription = RageUI.Settings.Items.Description
             local DescriptionLineCount = Graphics.GetLineCount(CurrentMenu.Description, CurrentMenu.X + SettingsDescription.Text.X, CurrentMenu.Y + SettingsDescription.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, SettingsDescription.Text.Scale, 255, 255, 255, 255, nil, false, false, SettingsDescription.Background.Width + (CurrentMenu.WidthOffset - 5.0))
             if DescriptionLineCount > 1 then
                 CurrentMenu.DescriptionHeight = SettingsDescription.Background.Height * DescriptionLineCount
@@ -447,7 +447,7 @@ function RageUI.ItemsDescription(Description)
             end
         end
     else
-        CurrentMenu.Description = nil;
+        CurrentMenu.Description = nil
     end
 end
 
@@ -462,7 +462,7 @@ function RageUI.ItemsMouseBounds(CurrentMenu, Selected, Option, SettingsButton)
             Audio.PlaySound(RageUI.Settings.Audio.UpDown.audioName, RageUI.Settings.Audio.UpDown.audioRef)
         end
     end
-    return Hovered;
+    return Hovered
 end
 
 function RageUI.ItemsSafeZone(CurrentMenu)
@@ -497,7 +497,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(RageUI.PoolMenus.Timer)
         if RageUI.PoolMenus.Timer == 250 then
             RageUI.PoolMenus.Name = nil
-            RageUI.Pool();
+            RageUI.Pool()
         end
     end
 end)

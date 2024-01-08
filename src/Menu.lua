@@ -20,16 +20,16 @@
 ---@public
 function RageUI.CreateMenu(Title, Subtitle, X, Y, TextureDictionary, TextureName, R, G, B, A)
 	local Menu = {}
-	Menu.Display = {};
+	Menu.Display = {}
 
 	Menu.InstructionalButtons = {}
 
-	Menu.Display.Header = true;
-	Menu.Display.Subtitle = true;
-	Menu.Display.Background = true;
-	Menu.Display.Navigation = true;
-	Menu.Display.InstructionalButton = true;
-	Menu.Display.PageCounter = true;
+	Menu.Display.Header = true
+	Menu.Display.Subtitle = true
+	Menu.Display.Background = true
+	Menu.Display.Navigation = true
+	Menu.Display.InstructionalButton = true
+	Menu.Display.PageCounter = true
 
 	Menu.Title = Title or ""
 	Menu.TitleFont = 1
@@ -144,7 +144,7 @@ end
 function RageUIMenus:AddInstructionButton(button)
 	if type(button) == "table" and #button == 2 then
 		table.insert(self.InstructionalButtons, button)
-		self.UpdateInstructionalButtons(true);
+		self.UpdateInstructionalButtons(true)
 	end
 end
 
@@ -153,7 +153,7 @@ function RageUIMenus:RemoveInstructionButton(button)
 		for i = 1, #self.InstructionalButtons do
 			if button == self.InstructionalButtons[i] then
 				table.remove(self.InstructionalButtons, i)
-				self.UpdateInstructionalButtons(true);
+				self.UpdateInstructionalButtons(true)
 				break
 			end
 		end
@@ -161,7 +161,7 @@ function RageUIMenus:RemoveInstructionButton(button)
 		if tonumber(button) then
 			if self.InstructionalButtons[tonumber(button)] then
 				table.remove(self.InstructionalButtons, tonumber(button))
-				self.UpdateInstructionalButtons(true);
+				self.UpdateInstructionalButtons(true)
 			end
 		end
 	end
@@ -226,11 +226,11 @@ function RageUIMenus:IsVisible(Item, Panel)
 	if (RageUI.Visible(self)) and (UpdateOnscreenKeyboard() ~= 0) and (UpdateOnscreenKeyboard() ~= 3) then
 		RageUI.Banner()
 		RageUI.Subtitle()
-		Item(Items);
-		RageUI.Background();
-		RageUI.Navigation();
-		RageUI.Description();
-		Panel(Panels);
+		Item(Items)
+		RageUI.Background()
+		RageUI.Navigation()
+		RageUI.Description()
+		Panel(Panels)
 		RageUI.PoolMenus.Timer = 1
 		RageUI.Render()
 	end
@@ -240,7 +240,7 @@ function RageUIMenus:KeysRegister(Controls, ControlName, Description, Action)
 	RegisterKeyMapping(string.format('riv-%s', ControlName), Description, "keyboard", Controls)
 	RegisterCommand(string.format('riv-%s', ControlName), function(source, args)
 		if (Action ~= nil) then
-			Action();
+			Action()
 		end
 	end, false)
 end

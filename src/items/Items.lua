@@ -23,7 +23,7 @@ local ItemsSettings = {
 }
 
 local function StyleCheckBox(Selected, Checked, Box, BoxSelect, OffSet)
-    local CurrentMenu = RageUI.CurrentMenu;
+    local CurrentMenu = RageUI.CurrentMenu
     if OffSet == nil then
         OffSet = 0
     end
@@ -100,7 +100,7 @@ function Items:AddButton(Label, Description, Style, Actions, Submenu)
         end
         RageUI.ItemOffset = RageUI.ItemOffset + 38
         if (Active) then
-            RageUI.ItemsDescription(Description);
+            RageUI.ItemsDescription(Description)
             if not (Style.IsDisabled) then
                 local Selected = (CurrentMenu.Controls.Select.Active)
                 Actions(Selected, Active)
@@ -123,13 +123,13 @@ end
 ---@param Style table
 ---@param Actions fun(onSelected:boolean, IsChecked:boolean)
 function Items:CheckBox(Label, Description, Checked, Style, Actions)
-    local CurrentMenu = RageUI.CurrentMenu;
+    local CurrentMenu = RageUI.CurrentMenu
 
     local Option = RageUI.Options + 1
     if CurrentMenu.Pagination.Minimum <= Option and CurrentMenu.Pagination.Maximum >= Option then
 
-        local Active = CurrentMenu.Index == Option;
-        local Selected = false;
+        local Active = CurrentMenu.Index == Option
+        local Selected = false
         local LeftBadgeOffset = ((Style.LeftBadge == RageUI.BadgeStyle.None or Style.LeftBadge == nil) and 0 or 27)
         local RightBadgeOffset = ((Style.RightBadge == RageUI.BadgeStyle.None or Style.RightBadge == nil) and 0 or 32)
         local BoxOffset = 0
@@ -199,7 +199,7 @@ function Items:CheckBox(Label, Description, Checked, Style, Actions)
         end
 
         if (Active) and (CurrentMenu.Controls.Select.Active) then
-            Selected = true;
+            Selected = true
             Checked = not Checked
             Audio.PlaySound(RageUI.Settings.Audio.Select.audioName, RageUI.Settings.Audio.Select.audioRef)
         end
@@ -225,7 +225,7 @@ function Items:AddSeparator(Label)
     local CurrentMenu = RageUI.CurrentMenu
     local Option = RageUI.Options + 1
     if CurrentMenu.Pagination.Minimum <= Option and CurrentMenu.Pagination.Maximum >= Option then
-        local Active = CurrentMenu.Index == Option;
+        local Active = CurrentMenu.Index == Option
         if (Label ~= nil) then
             Graphics.Text(Label, CurrentMenu.X + 0 + (CurrentMenu.WidthOffset * 2.5 ~= 0 and CurrentMenu.WidthOffset * 2.5 or 200), CurrentMenu.Y + 0 + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, 0.33, 245, 245, 245, 255, 1)
         end
@@ -254,12 +254,12 @@ end
 ---@param Actions fun(Index:number, onSelected:boolean, onListChange:boolean))
 ---@param Submenu any
 function Items:AddList(Label, Items, Index, Description, Style, Actions, Submenu)
-    local CurrentMenu = RageUI.CurrentMenu;
+    local CurrentMenu = RageUI.CurrentMenu
 
     local Option = RageUI.Options + 1
     if CurrentMenu.Pagination.Minimum <= Option and CurrentMenu.Pagination.Maximum >= Option then
-        local Active = CurrentMenu.Index == Option;
-        local onListChange = false;
+        local Active = CurrentMenu.Index == Option
+        local onListChange = false
         RageUI.ItemsSafeZone(CurrentMenu)
         local LeftBadgeOffset = ((Style.LeftBadge == RageUI.BadgeStyle.None or Style.LeftBadge == nil) and 0 or 27)
         local RightBadgeOffset = ((Style.RightBadge == RageUI.BadgeStyle.None or Style.RightBadge == nil) and 0 or 32)
@@ -328,7 +328,7 @@ function Items:AddList(Label, Items, Index, Description, Style, Actions, Submenu
         RageUI.ItemOffset = RageUI.ItemOffset + 38
 
         if (Active) then
-            RageUI.ItemsDescription(Description);
+            RageUI.ItemsDescription(Description)
             if (not Style.IsDisabled) then
                 if (CurrentMenu.Controls.Left.Active) and not (CurrentMenu.Controls.Right.Active) then
                     Index = Index - 1
@@ -363,7 +363,7 @@ end
 ---@param Mum number
 ---@param Dad number
 function Items:Heritage(Mum, Dad)
-    local CurrentMenu = RageUI.CurrentMenu;
+    local CurrentMenu = RageUI.CurrentMenu
     if Mum < 0 or Mum > 21 then
         Mum = 0
     end

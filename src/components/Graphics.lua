@@ -68,7 +68,7 @@ local function RText(text, x, y, font, scale, r, g, b, a, alignment, dropShadow,
     return Text, X, Y
 end
 
-Graphics = {};
+Graphics = {}
 
 function Graphics.MeasureStringWidth(str, font, scale)
     BeginTextCommandGetWidth("CELL_EMAIL_BCON")

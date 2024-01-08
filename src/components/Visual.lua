@@ -4,7 +4,7 @@
 --- File created at [24/05/2021 00:00]
 ---
 
-Visual = {};
+Visual = {}
 
 local function AddLongString(txt)
     for i = 100, string.len(txt), 99 do
@@ -66,7 +66,7 @@ function Visual.PromptDuration(duration, text, spinner)
         Visual.Prompt(text, spinner)
         Citizen.Wait(duration)
         if (BusyspinnerIsOn()) then
-            BusyspinnerOff();
+            BusyspinnerOff()
         end
     end)
 end

@@ -5,7 +5,7 @@
 ---
 
 ---@class Panels
-Panels = {};
+Panels = {}
 
 local GridType = {
     Default = 1,
@@ -86,8 +86,8 @@ local function UIGridPanel(Type, StartedX, StartedY, TopText, BottomText, LeftTe
                     Action(X, Y, (X * 2 - 1), (Y * 2 - 1))
                     --	Action.onPositionChange(X, Y, (X * 2 - 1), (Y * 2 - 1))
                 end
-                StartedX = X;
-                StartedY = Y;
+                StartedX = X
+                StartedY = Y
                 if X > 1.0 then
                     X = 1.0
                 end
@@ -100,7 +100,7 @@ local function UIGridPanel(Type, StartedX, StartedY, TopText, BottomText, LeftTe
         if Hovered and Selected then
             Audio.PlaySound(RageUI.Settings.Audio.Slider.audioName, RageUI.Settings.Audio.Slider.audioRef, true)
             --if (Action.onSelected ~= nil) then
-            --	Action.onSelected(X, Y, (X * 2 - 1), (Y * 2 - 1));
+            --	Action.onSelected(X, Y, (X * 2 - 1), (Y * 2 - 1))
             --end
         end
     end

@@ -18,7 +18,7 @@ local ControlActions = {
 ---@return nil
 ---@public
 function RageUI.GoUp(Options)
-	local CurrentMenu = RageUI.CurrentMenu;
+	local CurrentMenu = RageUI.CurrentMenu
 	if CurrentMenu ~= nil then
 		Options = CurrentMenu.Options
 		if CurrentMenu() then
@@ -65,7 +65,7 @@ end
 ---@return nil
 ---@public
 function RageUI.GoDown(Options)
-	local CurrentMenu = RageUI.CurrentMenu;
+	local CurrentMenu = RageUI.CurrentMenu
 	if CurrentMenu ~= nil then
 		Options = CurrentMenu.Options
 		if CurrentMenu() then
@@ -164,12 +164,12 @@ end
 ---@return nil
 ---@public
 function RageUI.Controls()
-	local CurrentMenu = RageUI.CurrentMenu;
+	local CurrentMenu = RageUI.CurrentMenu
 	if CurrentMenu ~= nil then
 		if CurrentMenu() then
 			if CurrentMenu.Open then
 
-				local Controls = CurrentMenu.Controls;
+				local Controls = CurrentMenu.Controls
 
 				local Options = CurrentMenu.Options
 				RageUI.Options = CurrentMenu.Options
@@ -258,7 +258,7 @@ end
 ---@return nil
 ---@public
 function RageUI.Navigation()
-	local CurrentMenu = RageUI.CurrentMenu;
+	local CurrentMenu = RageUI.CurrentMenu
 	if CurrentMenu ~= nil then
 		if CurrentMenu() and (CurrentMenu.Display.Navigation) then
 			if CurrentMenu.EnableMouse then

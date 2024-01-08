@@ -4,13 +4,13 @@
 --- created at [24/05/2021 10:02]
 ---
 
-local MainMenu = RageUI.CreateMenu("Title", "SUBTITLE");
-MainMenu.EnableMouse = true;
+local MainMenu = RageUI.CreateMenu("Title", "SUBTITLE")
+MainMenu.EnableMouse = true
 
 local SubMenu = RageUI.CreateSubMenu(MainMenu, "Title", "SubTitle")
 
-local Checked = false;
-local ListIndex = 1;
+local Checked = false
+local ListIndex = 1
 
 local GridX, GridY = 0, 0
 
@@ -25,7 +25,7 @@ function RageUI.PoolMenus:Example()
 		end)
 		Items:AddList("List", { 1, 2, 3 }, ListIndex, nil, { IsDisabled = false }, function(Index, onSelected, onListChange)
 			if (onListChange) then
-				ListIndex = Index;
+				ListIndex = Index
 			end
 		end)
 		Items:AddSeparator("Separator")
@@ -38,8 +38,8 @@ function RageUI.PoolMenus:Example()
 
 	end, function(Panels)
 		Panels:Grid(GridX, GridY, "Top", "Bottom", "Left", "Right", function(X, Y, CharacterX, CharacterY)
-			GridX = X;
-			GridY = Y;
+			GridX = X
+			GridY = Y
 		end, 1)
 	end)
 
