@@ -76,6 +76,10 @@ function Items:AddButton(Label, Description, Style, Actions, Submenu)
                 Graphics.Sprite("commonmenu", "gradient_nav", CurrentMenu.X, CurrentMenu.Y + 0 + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 431 + CurrentMenu.WidthOffset, 38)
             end
         end
+        -- SubMenu Arrow
+        if Submenu then
+            Style.RightLabel = "→"
+        end
         if not (Style.IsDisabled) then
             if haveLeftBadge then
                 if (Style.LeftBadge ~= nil) then
