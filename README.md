@@ -16,19 +16,19 @@ Since RageUI repository became deprecated, I decided to fork it to add some feat
 
 ```lua
 client_scripts {
-	'@rageui/src/RageUI.lua',
-	'@rageui/src/Menu.lua',
-	'@rageui/src/MenuController.lua',
-	'@rageui/src/components/Audio.lua',
-	'@rageui/src/components/Graphics.lua',
-	'@rageui/src/components/Keys.lua',
-	'@rageui/src/components/Util.lua',
-	'@rageui/src/components/Visual.lua',
-	'@rageui/src/elements/ItemsBadge.lua',
-	'@rageui/src/elements/ItemsColour.lua',
-	'@rageui/src/elements/PanelColour.lua',
-	'@rageui/src/items/Items.lua',
-	'@rageui/src/items/Panels.lua',
+	'@RageUI/src/RageUI.lua',
+	'@RageUI/src/Menu.lua',
+	'@RageUI/src/MenuController.lua',
+	'@RageUI/src/components/Audio.lua',
+	'@RageUI/src/components/Graphics.lua',
+	'@RageUI/src/components/Keys.lua',
+	'@RageUI/src/components/Util.lua',
+	'@RageUI/src/components/Visual.lua',
+	'@RageUI/src/elements/ItemsBadge.lua',
+	'@RageUI/src/elements/ItemsColour.lua',
+	'@RageUI/src/elements/PanelColour.lua',
+	'@RageUI/src/items/Items.lua',
+	'@RageUI/src/items/Panels.lua',
 	'MyClientFile.lua'
 }
 ```
