@@ -344,7 +344,7 @@ function RageUI.Subtitle()
             RageUI.Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + RageUI.ItemOffset,
                 RageUI.Settings.Items.Subtitle.Background.Width + CurrentMenu.WidthOffset,
                 RageUI.Settings.Items.Subtitle.Background.Height + CurrentMenu.SubtitleHeight, 0, 0, 0, 255)
-                RageUI.Graphics.Text(CurrentMenu.PageCounterColour .. CurrentMenu.Subtitle,
+            RageUI.Graphics.Text(CurrentMenu.PageCounterColour .. CurrentMenu.Subtitle,
                 CurrentMenu.X + RageUI.Settings.Items.Subtitle.Text.X,
                 CurrentMenu.Y + RageUI.Settings.Items.Subtitle.Text.Y + RageUI.ItemOffset, 0,
                 RageUI.Settings.Items.Subtitle.Text.Scale, 245, 245, 245, 255, nil, false, false,
@@ -365,7 +365,8 @@ function RageUI.Subtitle()
 
             if CurrentMenu.Display.PageCounter then
                 if CurrentMenu.PageCounter == nil then
-                    RageUI.Graphics.Text(CurrentMenu.PageCounterColour .. CurrentMenu.Index .. " / " .. CurrentMenu.Options,
+                    RageUI.Graphics.Text(
+                        CurrentMenu.PageCounterColour .. CurrentMenu.Index .. " / " .. CurrentMenu.Options,
                         CurrentMenu.X + RageUI.Settings.Items.Subtitle.PreText.X + CurrentMenu.WidthOffset,
                         CurrentMenu.Y + RageUI.Settings.Items.Subtitle.PreText.Y + RageUI.ItemOffset, 0,
                         RageUI.Settings.Items.Subtitle.PreText.Scale, 245, 245, 245, 255, 2)
@@ -401,10 +402,10 @@ function RageUI.Description()
         RageUI.Graphics.Rectangle(CurrentMenu.X,
             CurrentMenu.Y + Description.Bar.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
             Description.Bar.Width + CurrentMenu.WidthOffset, Description.Bar.Height, 0, 0, 0, 255)
-            RageUI.Graphics.Sprite(Description.Background.Dictionary, Description.Background.Texture, CurrentMenu.X,
+        RageUI.Graphics.Sprite(Description.Background.Dictionary, Description.Background.Texture, CurrentMenu.X,
             CurrentMenu.Y + Description.Background.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
             Description.Background.Width + CurrentMenu.WidthOffset, CurrentMenu.DescriptionHeight, 0, 0, 0, 255)
-            RageUI.Graphics.Text(CurrentMenu.Description, CurrentMenu.X + Description.Text.X,
+        RageUI.Graphics.Text(CurrentMenu.Description, CurrentMenu.X + Description.Text.X,
             CurrentMenu.Y + Description.Text.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0,
             Description.Text.Scale, 255, 255, 255, 255, nil, false, false,
             Description.Background.Width + CurrentMenu.WidthOffset - 8.0)

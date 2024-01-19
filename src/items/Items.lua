@@ -66,7 +66,7 @@ RageUI.Items = {}
 ---@param Actions fun(onSelected:boolean, onActive:boolean)
 ---@param Submenu any
 ---@public
----@return void
+---@return nil
 function RageUI.Items:AddButton(Label, Description, Style, Actions, Submenu)
     local CurrentMenu = RageUI.CurrentMenu
     local Option = RageUI.Options + 1
@@ -165,7 +165,7 @@ end
 ---@param Checked boolean
 ---@param Style table
 ---@param Actions fun(onSelected:boolean, IsChecked:boolean)
-function Items:AddCheckBox(Label, Description, Checked, Style, Actions)
+function RageUI.Items:AddCheckBox(Label, Description, Checked, Style, Actions)
     local CurrentMenu = RageUI.CurrentMenu
 
     local Option = RageUI.Options + 1
@@ -239,13 +239,13 @@ function Items:AddCheckBox(Label, Description, Checked, Style, Actions)
             if Style.RightLabel ~= nil and Style.RightLabel ~= "" then
                 RageUI.Graphics.Text(Style.RightLabel, CurrentMenu.X + 420 - RightBadgeOffset + CurrentMenu.WidthOffset,
                     CurrentMenu.Y + 4 + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, 0.35, 0, 0, 0, 255, 2)
-                BoxOffset = MeasureStringWidth(Style.RightLabel, 0, 0.35)
+                BoxOffset = RageUI.Graphics.MeasureStringWidth(Style.RightLabel, 0, 0.35)
             end
         else
             if Style.RightLabel ~= nil and Style.RightLabel ~= "" then
                 RageUI.Graphics.Text(Style.RightLabel, CurrentMenu.X + 420 - RightBadgeOffset + CurrentMenu.WidthOffset,
                     CurrentMenu.Y + 4 + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 0, 0.35, 245, 245, 245, 255, 2)
-                BoxOffset = MeasureStringWidth(Style.RightLabel, 0, 0.35)
+                BoxOffset = RageUI.Graphics.MeasureStringWidth(Style.RightLabel, 0, 0.35)
             end
         end
 
@@ -284,7 +284,7 @@ end
 ---
 ---@param Label string
 ---@public
----@return void
+---@return nil
 function RageUI.Items:AddSeparator(Label)
     local CurrentMenu = RageUI.CurrentMenu
     local Option = RageUI.Options + 1
@@ -316,7 +316,7 @@ end
 ---@param Items table<any, any>
 ---@param Index number
 ---@param Style table<any, any>
----@param Description string
+---@param Description string|nil
 ---@param Actions fun(Index:number, onSelected:boolean, onListChange:boolean))
 ---@param Submenu any
 function RageUI.Items:AddList(Label, Items, Index, Description, Style, Actions, Submenu)
@@ -443,7 +443,7 @@ function RageUI.Items:AddList(Label, Items, Index, Description, Style, Actions, 
                         RageUI.Settings.Audio.LeftRight.audioRef)
                 end
                 local Selected = (CurrentMenu.Controls.Select.Active)
-                Actions(Index, Selected, onListChange, Active)
+                Actions(Index, Selected, onListChange) -- Active
                 if (Selected) then
                     RageUI.Audio.PlaySound(RageUI.Settings.Audio.Select.audioName, RageUI.Settings.Audio.Select.audioRef)
                     if Submenu ~= nil and type(Submenu) == "table" then
@@ -457,31 +457,34 @@ function RageUI.Items:AddList(Label, Items, Index, Description, Style, Actions, 
 end
 
 ---Heritage
----@param Mum number
----@param Dad number
-function RageUI.Items:Heritage(Mum, Dad)
+---@param MumId number
+---@param DadId number
+function RageUI.Items:Heritage(MumId, DadId)
     local CurrentMenu = RageUI.CurrentMenu
-    if Mum < 0 or Mum > 21 then
-        Mum = 0
+
+    if MumId < 0 or MumId > 21 then
+        MumId = 0
     end
-    if Dad < 0 or Dad > 23 then
-        Dad = 0
+    if DadId < 0 or DadId > 23 then
+        DadId = 0
     end
-    if Mum == 21 then
-        Mum = "special_female_" .. (tonumber(string.sub(Mum, 2, 2)) - 1)
-    else
-        Mum = "female_" .. Mum
+
+    local mumName = "female_" .. MumId
+    local dadName = "male_" .. DadId
+
+    if MumId == 21 then
+        mumName = "special_female_" .. (tonumber(string.sub(MumId, 2, 2)) - 1)
     end
-    if Dad >= 21 then
-        Dad = "special_male_" .. (tonumber(string.sub(Dad, 2, 2)) - 1)
-    else
-        Dad = "male_" .. Dad
+
+    if DadId >= 21 then
+        dadName = "special_male_" .. (tonumber(string.sub(DadId, 2, 2)) - 1)
     end
+
     RageUI.Graphics.Sprite("pause_menu_pages_char_mom_dad", "mumdadbg", CurrentMenu.X,
         CurrentMenu.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 431 + (CurrentMenu.WidthOffset / 1), 228)
-    RageUI.Graphics.Sprite("char_creator_portraits", Dad, CurrentMenu.X + 195 + (CurrentMenu.WidthOffset / 2),
+    RageUI.Graphics.Sprite("char_creator_portraits", dadName, CurrentMenu.X + 195 + (CurrentMenu.WidthOffset / 2),
         CurrentMenu.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 228, 228)
-    RageUI.Graphics.Sprite("char_creator_portraits", Mum, CurrentMenu.X + 25 + (CurrentMenu.WidthOffset / 2),
+    RageUI.Graphics.Sprite("char_creator_portraits", mumName, CurrentMenu.X + 25 + (CurrentMenu.WidthOffset / 2),
         CurrentMenu.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset, 228, 228)
     RageUI.ItemOffset = RageUI.ItemOffset + 228
 end

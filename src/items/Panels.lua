@@ -38,7 +38,7 @@ local function UIGridPanel(Type, StartedX, StartedY, TopText, BottomText, LeftTe
             Type == GridType.Vertical and 0.5
         local Y = Type == GridType.Default and StartedY or Type == GridType.Horizontal and 0.5 or
             Type == GridType.Vertical and StartedY
-        local Hovered = Graphics.IsMouseInBounds(CurrentMenu.X + Grid.Grid.X + CurrentMenu.SafeZoneSize.X + 20,
+        local Hovered = RageUI.Graphics.IsMouseInBounds(CurrentMenu.X + Grid.Grid.X + CurrentMenu.SafeZoneSize.X + 20,
             CurrentMenu.Y + Grid.Grid.Y + CurrentMenu.SafeZoneSize.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset +
             20, Grid.Grid.Width + CurrentMenu.WidthOffset - 40, Grid.Grid.Height - 40)
         local Selected = false
@@ -150,7 +150,7 @@ end
 ---@param Action fun(X:number, Y:number, CharacterX:number, CharacterY:number)
 ---@param Index number
 ---@public
----@return void
+---@return nil
 function RageUI.Panels:Grid(StartedX, StartedY, TopText, BottomText, LeftText, RightText, Action, Index)
     UIGridPanel(GridType.Default, StartedX, StartedY, TopText, BottomText, LeftText, RightText, Action, Index)
 end
@@ -162,7 +162,7 @@ end
 ---@param Action fun(X:number, Y:number, CharacterX:number, CharacterY:number)
 ---@param Index number
 ---@public
----@return void
+---@return nil
 function RageUI.Panels:GridHorizontal(StartedX, LeftText, RightText, Action, Index)
     UIGridPanel(GridType.Horizontal, StartedX, nil, nil, nil, LeftText, RightText, Action, Index)
 end
@@ -174,7 +174,7 @@ end
 ---@param Action fun(X:number, Y:number, CharacterX:number, CharacterY:number)
 ---@param Index number
 ---@public
----@return void
+---@return nil
 function RageUI.Panels:GridVertical(StartedY, TopText, BottomText, Action, Index)
     UIGridPanel(GridType.Vertical, nil, StartedY, TopText, BottomText, nil, nil, Action, Index)
 end

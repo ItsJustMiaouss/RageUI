@@ -18,8 +18,8 @@
 ---@param A? number
 ---@return RageUIMenus
 ---@public
----@class RageUIMenus
 function RageUI.CreateMenu(Title, Subtitle, X, Y, TextureDictionary, TextureName, R, G, B, A)
+	---@class RageUIMenus
 	local Menu = {}
 	Menu.Display = {}
 
@@ -62,7 +62,8 @@ function RageUI.CreateMenu(Title, Subtitle, X, Y, TextureDictionary, TextureName
 	end
 
 	if Menu.Subtitle ~= "" then
-		local SubtitleLineCount = RageUI.Graphics.GetLineCount(Menu.Subtitle, Menu.X + RageUI.Settings.Items.Subtitle.Text.X,
+		local SubtitleLineCount = RageUI.Graphics.GetLineCount(Menu.Subtitle,
+			Menu.X + RageUI.Settings.Items.Subtitle.Text.X,
 			Menu.Y + RageUI.Settings.Items.Subtitle.Text.Y, 0, RageUI.Settings.Items.Subtitle.Text.Scale, 245, 245, 245,
 			255, nil, false, false, RageUI.Settings.Items.Subtitle.Background.Width + Menu.WidthOffset)
 
@@ -97,7 +98,7 @@ end
 ---@param G? number
 ---@param B? number
 ---@param A? number
----@return RageUIMenus
+---@return RageUIMenus|nil
 ---@public
 ---@class RageUIMenus
 function RageUI.CreateSubMenu(ParentMenu, Title, Subtitle, X, Y, TextureDictionary, TextureName, R, G, B, A)
@@ -139,7 +140,8 @@ function RageUIMenus:SetSubtitle(Subtitle)
 		self.PageCounterColour = ""
 	end
 	if self.Subtitle ~= "" then
-		local SubtitleLineCount = RageUI.Graphics.GetLineCount(self.Subtitle, self.X + RageUI.Settings.Items.Subtitle.Text.X,
+		local SubtitleLineCount = RageUI.Graphics.GetLineCount(self.Subtitle,
+			self.X + RageUI.Settings.Items.Subtitle.Text.X,
 			self.Y + RageUI.Settings.Items.Subtitle.Text.Y, 0, RageUI.Settings.Items.Subtitle.Text.Scale, 245, 245, 245,
 			255, nil, false, false, RageUI.Settings.Items.Subtitle.Background.Width + self.WidthOffset)
 
@@ -156,7 +158,7 @@ end
 function RageUIMenus:AddInstructionButton(button)
 	if type(button) == "table" and #button == 2 then
 		table.insert(self.InstructionalButtons, button)
-		self.UpdateInstructionalButtons(true)
+		self:UpdateInstructionalButtons(true)
 	end
 end
 
@@ -165,7 +167,7 @@ function RageUIMenus:RemoveInstructionButton(button)
 		for i = 1, #self.InstructionalButtons do
 			if button == self.InstructionalButtons[i] then
 				table.remove(self.InstructionalButtons, i)
-				self.UpdateInstructionalButtons(true)
+				self:UpdateInstructionalButtons(true)
 				break
 			end
 		end
@@ -173,7 +175,7 @@ function RageUIMenus:RemoveInstructionButton(button)
 		if tonumber(button) then
 			if self.InstructionalButtons[tonumber(button)] then
 				table.remove(self.InstructionalButtons, tonumber(button))
-				self.UpdateInstructionalButtons(true)
+				self:UpdateInstructionalButtons(true)
 			end
 		end
 	end
@@ -196,14 +198,14 @@ function RageUIMenus:UpdateInstructionalButtons(Visible)
 
 	BeginScaleformMovieMethod(self.InstructionalScaleform, "SET_DATA_SLOT")
 	ScaleformMovieMethodAddParamInt(0)
-	PushScaleformMovieMethodParameterButtonName(GetControlInstructionalButton(2, 176, 0))
+	PushScaleformMovieMethodParameterButtonName(GetControlInstructionalButton(2, 176, false))
 	PushScaleformMovieMethodParameterString(GetLabelText("HUD_INPUT2"))
 	EndScaleformMovieMethod()
 
 	if self.Closable then
 		BeginScaleformMovieMethod(self.InstructionalScaleform, "SET_DATA_SLOT")
 		ScaleformMovieMethodAddParamInt(1)
-		PushScaleformMovieMethodParameterButtonName(GetControlInstructionalButton(2, 177, 0))
+		PushScaleformMovieMethodParameterButtonName(GetControlInstructionalButton(2, 177, false))
 		PushScaleformMovieMethodParameterString(GetLabelText("HUD_INPUT3"))
 		EndScaleformMovieMethod()
 	end
