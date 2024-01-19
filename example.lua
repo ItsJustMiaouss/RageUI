@@ -42,6 +42,8 @@ function RageUI.PoolMenus:Example()
 		end, 1)
 	end)
 
+	if not SubMenu then return end
+
 	SubMenu:IsVisible(function(Items)
 		-- Items
 		Items:AddButton("Hello world", "Hello world.", { IsDisabled = false }, function(onSelected)

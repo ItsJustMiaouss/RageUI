@@ -100,7 +100,6 @@ end
 ---@param A? number
 ---@return RageUIMenus|nil
 ---@public
----@class RageUIMenus
 function RageUI.CreateSubMenu(ParentMenu, Title, Subtitle, X, Y, TextureDictionary, TextureName, R, G, B, A)
 	if ParentMenu ~= nil then
 		if ParentMenu() then

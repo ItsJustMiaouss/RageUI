@@ -61,7 +61,7 @@ RageUI.Items = {}
 --- Add items button.
 ---
 ---@param Label string
----@param Description string
+---@param Description string|nil
 ---@param Style table
 ---@param Actions fun(onSelected:boolean, onActive:boolean)
 ---@param Submenu any
@@ -161,7 +161,7 @@ end
 
 ---AddCheckBox
 ---@param Label string
----@param Description string
+---@param Description string|nil
 ---@param Checked boolean
 ---@param Style table
 ---@param Actions fun(onSelected:boolean, IsChecked:boolean)
