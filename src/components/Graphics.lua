@@ -115,51 +115,51 @@ function RageUI.Graphics.IsMouseInBounds(X, Y, Width, Height)
     return (MX >= X and MX <= X + Width) and (MY > Y and MY < Y + Height)
 end
 
-function RageUI.Graphics.ConvertToPixel(x, y)
-    return (x * 1920), (y * 1080)
-end
+-- function RageUI.Graphics.ConvertToPixel(x, y)
+--     return (x * 1920), (y * 1080)
+-- end
 
-function RageUI.Graphics.ScreenToWorld(distance, flags)
-    local camRot = GetGameplayCamRot(0)
-    local camPos = GetGameplayCamCoord()
-    local mouse = vector2(GetControlNormal(2, 239), GetControlNormal(2, 240))
-    local cam3DPos, forwardDir = RageUI.Graphics.ScreenRelToWorld(camPos, camRot, mouse)
-    local direction = camPos + forwardDir * distance
-    local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(cam3DPos, direction, flags, 0, 0)
-    local _, hit, endCoords, surfaceNormal, entityHit = GetShapeTestResult(rayHandle)
-    return (hit == 1 and true or false), endCoords, surfaceNormal, entityHit,
-        (entityHit >= 1 and GetEntityType(entityHit) or 0), direction, mouse
-end
+-- function RageUI.Graphics.ScreenToWorld(distance, flags)
+--     local camRot = GetGameplayCamRot(0)
+--     local camPos = GetGameplayCamCoord()
+--     local mouse = vector2(GetControlNormal(2, 239), GetControlNormal(2, 240))
+--     local cam3DPos, forwardDir = RageUI.Graphics.ScreenRelToWorld(camPos, camRot, mouse)
+--     local direction = camPos + forwardDir * distance
+--     local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(cam3DPos, direction, flags, 0, 0)
+--     local _, hit, endCoords, surfaceNormal, entityHit = GetShapeTestResult(rayHandle)
+--     return (hit == 1 and true or false), endCoords, surfaceNormal, entityHit,
+--         (entityHit >= 1 and GetEntityType(entityHit) or 0), direction, mouse
+-- end
 
-function RageUI.Graphics.ScreenRelToWorld(camPos, camRot, cursor)
-    local camForward = RageUI.Graphics.RotationToDirection(camRot)
-    local rotUp = vector3(camRot.x + 1.0, camRot.y, camRot.z)
-    local rotDown = vector3(camRot.x - 1.0, camRot.y, camRot.z)
-    local rotLeft = vector3(camRot.x, camRot.y, camRot.z - 1.0)
-    local rotRight = vector3(camRot.x, camRot.y, camRot.z + 1.0)
-    local camRight = RageUI.Graphics.RotationToDirection(rotRight) - RageUI.Graphics.RotationToDirection(rotLeft)
-    local camUp = RageUI.Graphics.RotationToDirection(rotUp) - RageUI.Graphics.RotationToDirection(rotDown)
-    local rollRad = -(camRot.y * math.pi / 180.0)
-    local camRightRoll = camRight * math.cos(rollRad) - camUp * math.sin(rollRad)
-    local camUpRoll = camRight * math.sin(rollRad) + camUp * math.cos(rollRad)
-    local point3DZero = camPos + camForward * 1.0
-    local point3D = point3DZero + camRightRoll + camUpRoll
-    local point2D = RageUI.Graphics.World3DToScreen2D(point3D)
-    local point2DZero = RageUI.Graphics.World3DToScreen2D(point3DZero)
-    local scaleX = (cursor.x - point2DZero.x) / (point2D.x - point2DZero.x)
-    local scaleY = (cursor.y - point2DZero.y) / (point2D.y - point2DZero.y)
-    local point3Dret = point3DZero + camRightRoll * scaleX + camUpRoll * scaleY
-    local forwardDir = camForward + camRightRoll * scaleX + camUpRoll * scaleY
-    return point3Dret, forwardDir
-end
+-- function RageUI.Graphics.ScreenRelToWorld(camPos, camRot, cursor)
+--     local camForward = RageUI.Graphics.RotationToDirection(camRot)
+--     local rotUp = vector3(camRot.x + 1.0, camRot.y, camRot.z)
+--     local rotDown = vector3(camRot.x - 1.0, camRot.y, camRot.z)
+--     local rotLeft = vector3(camRot.x, camRot.y, camRot.z - 1.0)
+--     local rotRight = vector3(camRot.x, camRot.y, camRot.z + 1.0)
+--     local camRight = RageUI.Graphics.RotationToDirection(rotRight) - RageUI.Graphics.RotationToDirection(rotLeft)
+--     local camUp = RageUI.Graphics.RotationToDirection(rotUp) - RageUI.Graphics.RotationToDirection(rotDown)
+--     local rollRad = -(camRot.y * math.pi / 180.0)
+--     local camRightRoll = camRight * math.cos(rollRad) - camUp * math.sin(rollRad)
+--     local camUpRoll = camRight * math.sin(rollRad) + camUp * math.cos(rollRad)
+--     local point3DZero = camPos + camForward * 1.0
+--     local point3D = point3DZero + camRightRoll + camUpRoll
+--     local point2D = RageUI.Graphics.World3DToScreen2D(point3D)
+--     local point2DZero = RageUI.Graphics.World3DToScreen2D(point3DZero)
+--     local scaleX = (cursor.x - point2DZero.x) / (point2D.x - point2DZero.x)
+--     local scaleY = (cursor.y - point2DZero.y) / (point2D.y - point2DZero.y)
+--     local point3Dret = point3DZero + camRightRoll * scaleX + camUpRoll * scaleY
+--     local forwardDir = camForward + camRightRoll * scaleX + camUpRoll * scaleY
+--     return point3Dret, forwardDir
+-- end
 
-function RageUI.Graphics.RotationToDirection(rotation)
-    local x, z = (rotation.x * math.pi / 180.0), (rotation.z * math.pi / 180.0)
-    local num = math.abs(math.cos(x))
-    return vector3((-math.sin(z) * num), (math.cos(z) * num), math.sin(x))
-end
+-- function RageUI.Graphics.RotationToDirection(rotation)
+--     local x, z = (rotation.x * math.pi / 180.0), (rotation.z * math.pi / 180.0)
+--     local num = math.abs(math.cos(x))
+--     return vector3((-math.sin(z) * num), (math.cos(z) * num), math.sin(x))
+-- end
 
-function RageUI.Graphics.World3DToScreen2D(pos)
-    local _, sX, sY = GetScreenCoordFromWorldCoord(pos.x, pos.y, pos.z)
-    return vector2(sX, sY)
-end
+-- function RageUI.Graphics.World3DToScreen2D(pos)
+--     local _, sX, sY = GetScreenCoordFromWorldCoord(pos.x, pos.y, pos.z)
+--     return vector2(sX, sY)
+-- end
