@@ -7,8 +7,7 @@ Since RageUI repository became deprecated, I decided to fork it to add some feat
 ### Installation
 - Download the latest commit.
 - Unzip it into the ``resources`` folder.
-- Rename it to ``rageui``.
-- Add ``ensure rageui``.
+- Add ``ensure Rageui``.
 
 ### Usage
 
