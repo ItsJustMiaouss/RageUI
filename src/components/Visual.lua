@@ -4,7 +4,7 @@
 --- File created at [24/05/2021 00:00]
 ---
 
-Visual = {}
+RageUI.Visual = {}
 
 local function AddLongString(txt)
     for i = 100, string.len(txt), 99 do
@@ -13,7 +13,7 @@ local function AddLongString(txt)
     end
 end
 
-function Visual.Notification(args)
+function RageUI.Visual.Notification(args)
     if (not args.dict) and (args.name) then
         args.dict = args.name
     end
@@ -39,14 +39,14 @@ function Visual.Notification(args)
     EndTextCommandThefeedPostTicker(false, true)
 end
 
-function Visual.Subtitle(text, time)
+function RageUI.Visual.Subtitle(text, time)
     ClearPrints()
     BeginTextCommandPrint("STRING")
     AddTextComponentSubstringPlayerName(text)
     EndTextCommandPrint(time and math.ceil(time) or 0, true)
 end
 
-function Visual.FloatingHelpText(text, sound, loop)
+function RageUI.Visual.FloatingHelpText(text, sound, loop)
     BeginTextCommandDisplayHelp("jamyfafi")
     AddTextComponentSubstringPlayerName(text)
     if string.len(text) > 99 then
@@ -55,16 +55,16 @@ function Visual.FloatingHelpText(text, sound, loop)
     EndTextCommandDisplayHelp(0, loop or 0, sound or false, -1)
 end
 
-function Visual.Prompt(text, spinner)
+function RageUI.Visual.Prompt(text, spinner)
     BeginTextCommandBusyspinnerOn("STRING")
     AddTextComponentSubstringPlayerName(text)
     EndTextCommandBusyspinnerOn(spinner or 1)
 end
 
-function Visual.PromptDuration(duration, text, spinner)
+function RageUI.Visual.PromptDuration(duration, text, spinner)
     Citizen.CreateThread(function()
         Citizen.Wait(0)
-        Visual.Prompt(text, spinner)
+        RageUI.Visual.Prompt(text, spinner)
         Citizen.Wait(duration)
         if (BusyspinnerIsOn()) then
             BusyspinnerOff()
@@ -72,7 +72,7 @@ function Visual.PromptDuration(duration, text, spinner)
     end)
 end
 
-function Visual.FloatingHelpTextToEntity(text, x, y)
+function RageUI.Visual.FloatingHelpTextToEntity(text, x, y)
     SetFloatingHelpTextScreenPosition(1, x, y)
     SetFloatingHelpTextStyle(1, 1, 2, -1, 3, 0)
     BeginTextCommandDisplayHelp("jamyfafi")

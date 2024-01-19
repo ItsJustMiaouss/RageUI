@@ -4,7 +4,7 @@
 --- File created at [24/05/2021 00:00]
 ---
 
-Audio = {}
+RageUI.Audio = {}
 
 ---PlaySound
 ---
@@ -15,7 +15,7 @@ Audio = {}
 ---@param IsLooped boolean
 ---@return nil
 ---@public
-function Audio.PlaySound(Library, Sound, IsLooped)
+function RageUI.Audio.PlaySound(Library, Sound, IsLooped)
     local audioId
     if not IsLooped then
         PlaySoundFrontend(-1, Sound, Library, true)

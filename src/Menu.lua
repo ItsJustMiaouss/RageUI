@@ -62,7 +62,7 @@ function RageUI.CreateMenu(Title, Subtitle, X, Y, TextureDictionary, TextureName
 	end
 
 	if Menu.Subtitle ~= "" then
-		local SubtitleLineCount = Graphics.GetLineCount(Menu.Subtitle, Menu.X + RageUI.Settings.Items.Subtitle.Text.X,
+		local SubtitleLineCount = RageUI.Graphics.GetLineCount(Menu.Subtitle, Menu.X + RageUI.Settings.Items.Subtitle.Text.X,
 			Menu.Y + RageUI.Settings.Items.Subtitle.Text.Y, 0, RageUI.Settings.Items.Subtitle.Text.Scale, 245, 245, 245,
 			255, nil, false, false, RageUI.Settings.Items.Subtitle.Background.Width + Menu.WidthOffset)
 
@@ -139,7 +139,7 @@ function RageUIMenus:SetSubtitle(Subtitle)
 		self.PageCounterColour = ""
 	end
 	if self.Subtitle ~= "" then
-		local SubtitleLineCount = Graphics.GetLineCount(self.Subtitle, self.X + RageUI.Settings.Items.Subtitle.Text.X,
+		local SubtitleLineCount = RageUI.Graphics.GetLineCount(self.Subtitle, self.X + RageUI.Settings.Items.Subtitle.Text.X,
 			self.Y + RageUI.Settings.Items.Subtitle.Text.Y, 0, RageUI.Settings.Items.Subtitle.Text.Scale, 245, 245, 245,
 			255, nil, false, false, RageUI.Settings.Items.Subtitle.Background.Width + self.WidthOffset)
 
@@ -231,17 +231,17 @@ function RageUIMenus:UpdateInstructionalButtons(Visible)
 end
 
 ---IsVisible
----@param Item fun(Item:Items)
----@param Panel fun(Panel:Panels
+---@param Item fun(Item:RageUI.Items)
+---@param Panel fun(Panel:RageUI.Panels)
 function RageUIMenus:IsVisible(Item, Panel)
 	if (RageUI.Visible(self)) and (UpdateOnscreenKeyboard() ~= 0) and (UpdateOnscreenKeyboard() ~= 3) then
 		RageUI.Banner()
 		RageUI.Subtitle()
-		Item(Items)
+		Item(RageUI.Items)
 		RageUI.Background()
 		RageUI.Navigation()
 		RageUI.Description()
-		Panel(Panels)
+		Panel(RageUI.Panels)
 		RageUI.PoolMenus.Timer = 1
 		RageUI.Render()
 	end

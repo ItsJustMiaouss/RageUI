@@ -47,13 +47,13 @@ function RageUI.GoUp(Options)
 					end
 				end
 
-				Audio.PlaySound(RageUI.Settings.Audio.UpDown.audioName, RageUI.Settings.Audio.UpDown.audioRef)
+				RageUI.Audio.PlaySound(RageUI.Settings.Audio.UpDown.audioName, RageUI.Settings.Audio.UpDown.audioRef)
 				RageUI.LastControl = true
 				if (CurrentMenu.onIndexChange ~= nil) then
 					CurrentMenu.onIndexChange(CurrentMenu.Index)
 				end
 			else
-				Audio.PlaySound(RageUI.Settings.Audio.Error.audioName, RageUI.Settings.Audio.Error.audioRef)
+				RageUI.Audio.PlaySound(RageUI.Settings.Audio.Error.audioName, RageUI.Settings.Audio.Error.audioRef)
 			end
 		end
 	end
@@ -78,7 +78,7 @@ function RageUI.GoDown(Options)
 						else
 							CurrentMenu.Pagination.Maximum = (CurrentMenu.Pagination.Maximum + 1)
 							CurrentMenu.Pagination.Minimum = CurrentMenu.Pagination.Maximum -
-							(CurrentMenu.Pagination.Total - 1)
+								(CurrentMenu.Pagination.Total - 1)
 							CurrentMenu.Index = CurrentMenu.Index + 1
 						end
 					else
@@ -94,13 +94,13 @@ function RageUI.GoDown(Options)
 					end
 				end
 
-				Audio.PlaySound(RageUI.Settings.Audio.UpDown.audioName, RageUI.Settings.Audio.UpDown.audioRef)
+				RageUI.Audio.PlaySound(RageUI.Settings.Audio.UpDown.audioName, RageUI.Settings.Audio.UpDown.audioRef)
 				RageUI.LastControl = false
 				if (CurrentMenu.onIndexChange ~= nil) then
 					CurrentMenu.onIndexChange(CurrentMenu.Index)
 				end
 			else
-				Audio.PlaySound(RageUI.Settings.Audio.Error.audioName, RageUI.Settings.Audio.Error.audioRef)
+				RageUI.Audio.PlaySound(RageUI.Settings.Audio.Error.audioName, RageUI.Settings.Audio.Error.audioRef)
 			end
 		end
 	end
@@ -280,11 +280,11 @@ function RageUI.Navigation()
 				end
 
 				if CurrentMenu.EnableMouse then
-					UpHovered = Graphics.IsMouseInBounds(CurrentMenu.X + CurrentMenu.SafeZoneSize.X,
+					UpHovered = RageUI.Graphics.IsMouseInBounds(CurrentMenu.X + CurrentMenu.SafeZoneSize.X,
 						CurrentMenu.Y + CurrentMenu.SafeZoneSize.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
 						RageUI.Settings.Items.Navigation.Rectangle.Width + CurrentMenu.WidthOffset,
 						RageUI.Settings.Items.Navigation.Rectangle.Height)
-					DownHovered = Graphics.IsMouseInBounds(CurrentMenu.X + CurrentMenu.SafeZoneSize.X,
+					DownHovered = RageUI.Graphics.IsMouseInBounds(CurrentMenu.X + CurrentMenu.SafeZoneSize.X,
 						CurrentMenu.Y + RageUI.Settings.Items.Navigation.Rectangle.Height + CurrentMenu.SafeZoneSize.Y +
 						CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
 						RageUI.Settings.Items.Navigation.Rectangle.Width + CurrentMenu.WidthOffset,
@@ -299,38 +299,38 @@ function RageUI.Navigation()
 					end
 
 					if UpHovered then
-						Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
+						RageUI.Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
 							RageUI.Settings.Items.Navigation.Rectangle.Width + CurrentMenu.WidthOffset,
 							RageUI.Settings.Items.Navigation.Rectangle.Height, 30, 30, 30, 255)
 					else
-						Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
+						RageUI.Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
 							RageUI.Settings.Items.Navigation.Rectangle.Width + CurrentMenu.WidthOffset,
 							RageUI.Settings.Items.Navigation.Rectangle.Height, 0, 0, 0, 200)
 					end
 
 					if DownHovered then
-						Graphics.Rectangle(CurrentMenu.X,
+						RageUI.Graphics.Rectangle(CurrentMenu.X,
 							CurrentMenu.Y + RageUI.Settings.Items.Navigation.Rectangle.Height +
 							CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
 							RageUI.Settings.Items.Navigation.Rectangle.Width + CurrentMenu.WidthOffset,
 							RageUI.Settings.Items.Navigation.Rectangle.Height, 30, 30, 30, 255)
 					else
-						Graphics.Rectangle(CurrentMenu.X,
+						RageUI.Graphics.Rectangle(CurrentMenu.X,
 							CurrentMenu.Y + RageUI.Settings.Items.Navigation.Rectangle.Height +
 							CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
 							RageUI.Settings.Items.Navigation.Rectangle.Width + CurrentMenu.WidthOffset,
 							RageUI.Settings.Items.Navigation.Rectangle.Height, 0, 0, 0, 200)
 					end
 				else
-					Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
+					RageUI.Graphics.Rectangle(CurrentMenu.X, CurrentMenu.Y + CurrentMenu.SubtitleHeight + RageUI.ItemOffset,
 						RageUI.Settings.Items.Navigation.Rectangle.Width + CurrentMenu.WidthOffset,
 						RageUI.Settings.Items.Navigation.Rectangle.Height, 0, 0, 0, 200)
-					Graphics.Rectangle(CurrentMenu.X,
+						RageUI.Graphics.Rectangle(CurrentMenu.X,
 						CurrentMenu.Y + RageUI.Settings.Items.Navigation.Rectangle.Height + CurrentMenu.SubtitleHeight +
 						RageUI.ItemOffset, RageUI.Settings.Items.Navigation.Rectangle.Width + CurrentMenu.WidthOffset,
 						RageUI.Settings.Items.Navigation.Rectangle.Height, 0, 0, 0, 200)
 				end
-				Graphics.Sprite(RageUI.Settings.Items.Navigation.Arrows.Dictionary,
+				RageUI.Graphics.Sprite(RageUI.Settings.Items.Navigation.Arrows.Dictionary,
 					RageUI.Settings.Items.Navigation.Arrows.Texture,
 					CurrentMenu.X + RageUI.Settings.Items.Navigation.Arrows.X + (CurrentMenu.WidthOffset / 2),
 					CurrentMenu.Y + RageUI.Settings.Items.Navigation.Arrows.Y + CurrentMenu.SubtitleHeight +
@@ -348,7 +348,7 @@ end
 function RageUI.GoBack()
 	local CurrentMenu = RageUI.CurrentMenu
 	if CurrentMenu ~= nil then
-		Audio.PlaySound(RageUI.Settings.Audio.Back.audioName, RageUI.Settings.Audio.Back.audioRef)
+		RageUI.Audio.PlaySound(RageUI.Settings.Audio.Back.audioName, RageUI.Settings.Audio.Back.audioRef)
 		if CurrentMenu.Parent ~= nil then
 			if CurrentMenu.Parent() then
 				RageUI.NextMenu = CurrentMenu.Parent

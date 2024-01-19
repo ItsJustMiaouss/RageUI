@@ -68,9 +68,9 @@ local function RText(text, x, y, font, scale, r, g, b, a, alignment, dropShadow,
     return Text, X, Y
 end
 
-Graphics = {}
+RageUI.Graphics = {}
 
-function Graphics.MeasureStringWidth(str, font, scale)
+function RageUI.Graphics.MeasureStringWidth(str, font, scale)
     BeginTextCommandGetWidth("CELL_EMAIL_BCON")
     AddTextComponentSubstringPlayerName(str)
     SetTextFont(font or 0)
@@ -78,12 +78,12 @@ function Graphics.MeasureStringWidth(str, font, scale)
     return EndTextCommandGetWidth(true) * 1920
 end
 
-function Graphics.Rectangle(x, y, width, height, r, g, b, a)
+function RageUI.Graphics.Rectangle(x, y, width, height, r, g, b, a)
     local X, Y, Width, Height = (x or 0) / 1920, (y or 0) / 1080, (width or 0) / 1920, (height or 0) / 1080
     DrawRect(X + Width * 0.5, Y + Height * 0.5, Width, Height, r or 255, g or 255, b or 255, a or 255)
 end
 
-function Graphics.Sprite(dictionary, name, x, y, width, height, heading, r, g, b, a)
+function RageUI.Graphics.Sprite(dictionary, name, x, y, width, height, heading, r, g, b, a)
     local X, Y, Width, Height = (x or 0) / 1920, (y or 0) / 1080, (width or 0) / 1920, (height or 0) / 1080
 
     if not HasStreamedTextureDictLoaded(dictionary) then
@@ -94,36 +94,36 @@ function Graphics.Sprite(dictionary, name, x, y, width, height, heading, r, g, b
         b or 255, a or 255)
 end
 
-function Graphics.GetLineCount(text, x, y, font, scale, r, g, b, a, alignment, dropShadow, outline, wordWrap)
+function RageUI.Graphics.GetLineCount(text, x, y, font, scale, r, g, b, a, alignment, dropShadow, outline, wordWrap)
     local Text, X, Y = RText(text, x, y, font, scale, r, g, b, a, alignment, dropShadow, outline, wordWrap)
     BeginTextCommandLineCount("CELL_EMAIL_BCON")
     AddText(Text)
     return EndTextCommandLineCount(X, Y)
 end
 
-function Graphics.Text(text, x, y, font, scale, r, g, b, a, alignment, dropShadow, outline, wordWrap)
+function RageUI.Graphics.Text(text, x, y, font, scale, r, g, b, a, alignment, dropShadow, outline, wordWrap)
     local Text, X, Y = RText(text, x, y, font, scale, r, g, b, a, alignment, dropShadow, outline, wordWrap)
     BeginTextCommandDisplayText("CELL_EMAIL_BCON")
     AddText(Text)
     EndTextCommandDisplayText(X, Y)
 end
 
-function Graphics.IsMouseInBounds(X, Y, Width, Height)
+function RageUI.Graphics.IsMouseInBounds(X, Y, Width, Height)
     local MX, MY = math.round(GetControlNormal(2, 239) * 1920) / 1920, math.round(GetControlNormal(2, 240) * 1080) / 1080
     X, Y = X / 1920, Y / 1080
     Width, Height = Width / 1920, Height / 1080
     return (MX >= X and MX <= X + Width) and (MY > Y and MY < Y + Height)
 end
 
-function Graphics.ConvertToPixel(x, y)
+function RageUI.Graphics.ConvertToPixel(x, y)
     return (x * 1920), (y * 1080)
 end
 
-function Graphics.ScreenToWorld(distance, flags)
+function RageUI.Graphics.ScreenToWorld(distance, flags)
     local camRot = GetGameplayCamRot(0)
     local camPos = GetGameplayCamCoord()
     local mouse = vector2(GetControlNormal(2, 239), GetControlNormal(2, 240))
-    local cam3DPos, forwardDir = Graphics.ScreenRelToWorld(camPos, camRot, mouse)
+    local cam3DPos, forwardDir = RageUI.Graphics.ScreenRelToWorld(camPos, camRot, mouse)
     local direction = camPos + forwardDir * distance
     local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(cam3DPos, direction, flags, 0, 0)
     local _, hit, endCoords, surfaceNormal, entityHit = GetShapeTestResult(rayHandle)
@@ -131,21 +131,21 @@ function Graphics.ScreenToWorld(distance, flags)
         (entityHit >= 1 and GetEntityType(entityHit) or 0), direction, mouse
 end
 
-function Graphics.ScreenRelToWorld(camPos, camRot, cursor)
-    local camForward = Graphics.RotationToDirection(camRot)
+function RageUI.Graphics.ScreenRelToWorld(camPos, camRot, cursor)
+    local camForward = RageUI.Graphics.RotationToDirection(camRot)
     local rotUp = vector3(camRot.x + 1.0, camRot.y, camRot.z)
     local rotDown = vector3(camRot.x - 1.0, camRot.y, camRot.z)
     local rotLeft = vector3(camRot.x, camRot.y, camRot.z - 1.0)
     local rotRight = vector3(camRot.x, camRot.y, camRot.z + 1.0)
-    local camRight = Graphics.RotationToDirection(rotRight) - Graphics.RotationToDirection(rotLeft)
-    local camUp = Graphics.RotationToDirection(rotUp) - Graphics.RotationToDirection(rotDown)
+    local camRight = RageUI.Graphics.RotationToDirection(rotRight) - RageUI.Graphics.RotationToDirection(rotLeft)
+    local camUp = RageUI.Graphics.RotationToDirection(rotUp) - RageUI.Graphics.RotationToDirection(rotDown)
     local rollRad = -(camRot.y * math.pi / 180.0)
     local camRightRoll = camRight * math.cos(rollRad) - camUp * math.sin(rollRad)
     local camUpRoll = camRight * math.sin(rollRad) + camUp * math.cos(rollRad)
     local point3DZero = camPos + camForward * 1.0
     local point3D = point3DZero + camRightRoll + camUpRoll
-    local point2D = Graphics.World3DToScreen2D(point3D)
-    local point2DZero = Graphics.World3DToScreen2D(point3DZero)
+    local point2D = RageUI.Graphics.World3DToScreen2D(point3D)
+    local point2DZero = RageUI.Graphics.World3DToScreen2D(point3DZero)
     local scaleX = (cursor.x - point2DZero.x) / (point2D.x - point2DZero.x)
     local scaleY = (cursor.y - point2DZero.y) / (point2D.y - point2DZero.y)
     local point3Dret = point3DZero + camRightRoll * scaleX + camUpRoll * scaleY
@@ -153,13 +153,13 @@ function Graphics.ScreenRelToWorld(camPos, camRot, cursor)
     return point3Dret, forwardDir
 end
 
-function Graphics.RotationToDirection(rotation)
+function RageUI.Graphics.RotationToDirection(rotation)
     local x, z = (rotation.x * math.pi / 180.0), (rotation.z * math.pi / 180.0)
     local num = math.abs(math.cos(x))
     return vector3((-math.sin(z) * num), (math.cos(z) * num), math.sin(x))
 end
 
-function Graphics.World3DToScreen2D(pos)
+function RageUI.Graphics.World3DToScreen2D(pos)
     local _, sX, sY = GetScreenCoordFromWorldCoord(pos.x, pos.y, pos.z)
     return vector2(sX, sY)
 end
