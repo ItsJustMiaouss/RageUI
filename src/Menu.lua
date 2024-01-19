@@ -247,12 +247,3 @@ function RageUIMenus:IsVisible(Item, Panel)
 		RageUI.Render()
 	end
 end
-
-function RageUIMenus:KeysRegister(Controls, ControlName, Description, Action)
-	RegisterKeyMapping(string.format('riv-%s', ControlName), Description, "keyboard", Controls)
-	RegisterCommand(string.format('riv-%s', ControlName), function(source, args)
-		if (Action ~= nil) then
-			Action()
-		end
-	end, false)
-end
